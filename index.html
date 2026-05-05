@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Layanan Adminduk Modern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        :root { --primary: #2563eb; --primary-dark: #1e40af; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f5f9; }
+        .glass-effect { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .service-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); user-select: none; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); border-color: #3b82f6; }
+        .hero-gradient { background: radial-gradient(circle at top right, #3b82f6, #1e3a8a); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        #whatsappPreview { white-space: pre-wrap; font-family: 'Courier New', Courier, monospace; }
+        #registrationModal .max-h-[90vh]::-webkit-scrollbar { width: 6px; }
+        #registrationModal .max-h-[90vh]::-webkit-scrollbar-thumb { background-color: #e2e8f0; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="hero-gradient text-white pb-24 pt-12 px-6">
+        <div class="max-w-5xl mx-auto flex flex-col items-center text-center">
+            <div class="bg-white/10 p-3 rounded-2xl mb-6 backdrop-blur-md">
+                <i class="fas fa-id-card text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">Portal Adminduk Online</h1>
+            <p class="text-blue-100 text-lg max-w-2xl opacity-90 font-light">
+                Formulir otomatis akan terisi di kolom chat WhatsApp petugas. Silakan isi data di bawah ini.
+            </p>
+        </div>
+    </div>
+
+    <main class="max-w-6xl mx-auto px-4 md:px-6 -mt-16">
+        <div class="glass-effect rounded-2xl shadow-xl p-5 mb-10 flex flex-col md:row gap-4 items-center">
+            <div class="relative flex-1 w-full">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="serviceSearch" placeholder="Cari jenis layanan..." class="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all outline-none text-slate-700">
+            </div>
+            <div class="flex gap-2 w-full md:w-auto">
+                <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg text-sm font-semibold flex items-center whitespace-nowrap">
+                    <i class="fas fa-list-ul mr-2"></i> 27 Layanan
+                </span>
+            </div>
+        </div>
+
+        <div id="serviceList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12"></div>
+
+        <div id="registrationModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in relative">
+                <div class="p-6 md:p-8 border-b sticky top-0 bg-white/95 backdrop-blur-md z-10 flex justify-between items-center">
+                    <div>
+                        <span id="badgeNumber" class="bg-blue-100 text-blue-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-2 inline-block"></span>
+                        <h2 class="text-xl md:text-2xl font-extrabold text-slate-900 leading-tight" id="selectedServiceName">Formulir Pendaftaran</h2>
+                    </div>
+                    <button id="btnCloseModal" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors">
+                        <i class="fas fa-times text-slate-400 text-xl"></i>
+                    </button>
+                </div>
+                
+                <div id="formStep">
+                    <form id="mainForm" class="p-6 md:p-8 space-y-6">
+                        <div id="standardFields" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-sm font-bold text-slate-700 ml-1">NIK Pemohon</label>
+                                    <input type="number" id="inputNik" required placeholder="Contoh: 1301XXXXXXXXXXXX" class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-bold text-slate-700 ml-1">Nama Lengkap</label>
+                                    <input type="text" id="inputNama" required placeholder="Sesuai KTP" class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="service1SpecialFields" class="hidden space-y-6 bg-amber-50/50 p-6 rounded-2xl border border-amber-100">
+                            <h3 class="text-amber-800 font-bold flex items-center gap-2"><i class="fas fa-users-viewfinder"></i> Detail Numpang KK</h3>
+                            <div class="space-y-4">
+                                <label class="text-sm font-bold text-slate-700 block">Jenis Numpang KK:</label>
+                                <div class="flex flex-wrap gap-4">
+                                    <label class="flex items-center gap-2 cursor-pointer bg-white px-4 py-2 rounded-lg border border-slate-200">
+                                        <input type="radio" name="numpang_type" value="sekeluarga" checked onchange="_0x5a1b2c()"> <span class="text-sm">Sekeluarga</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer bg-white px-4 py-2 rounded-lg border border-slate-200">
+                                        <input type="radio" name="numpang_type" value="individu" onchange="_0x5a1b2c()"> <span class="text-sm">Perindividu (Bukan Kepala Keluarga)</span>
+                                    </label>
+                                </div>
+                                <div id="numpangSekeluarga" class="space-y-4 animate-fade-in">
+                                    <input type="number" id="kk_asal" placeholder="No. KK Asal" class="w-full p-3 bg-white border rounded-lg text-sm">
+                                    <input type="number" id="kk_tujuan_sek" placeholder="No. KK yang Ditempati" class="w-full p-3 bg-white border rounded-lg text-sm">
+                                    <select id="alasan_sek" class="w-full p-3 bg-white border rounded-lg text-sm">
+                                        <option value="">-- Pilih Alasan Numpang --</option>
+                                        <option value="KK dibawa oleh Kep.Keluarga">KK dibawa oleh Kep.Keluarga</option>
+                                        <option value="Pindah tempat tinggal tdk membawa KK">Pindah tempat tinggal tdk membawa KK</option>
+                                        <option value="Pindah tempat tinggal">Pindah tempat tinggal</option>
+                                    </select>
+                                </div>
+                                <div id="numpangIndividu" class="hidden space-y-4 animate-fade-in">
+                                    <div id="individuContainer" class="space-y-4"></div>
+                                    <button type="button" onclick="_0x2d3e4f()" class="text-amber-600 font-bold text-xs flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-amber-200 shadow-sm">
+                                        <i class="fas fa-plus"></i> Tambah Orang Individu
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="service6SpecialFields" class="hidden space-y-6 bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
+                            <h3 class="text-blue-800 font-bold flex items-center gap-2"><i class="fas fa-edit"></i> Rincian Perubahan Data</h3>
+                            <div id="personContainer" class="space-y-8"></div>
+                            <button type="button" id="btnAddPerson" class="text-blue-600 font-bold text-sm flex items-center gap-2 hover:text-blue-800 transition-all bg-white px-4 py-2 rounded-lg border border-blue-200 shadow-sm">
+                                <i class="fas fa-plus-circle"></i> Tambah Orang
+                            </button>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-100 transition-all">SIAPKAN PESAN WHATSAPP <i class="fas fa-chevron-right ml-2"></i></button>
+                    </form>
+                </div>
+
+                <div id="previewStep" class="hidden p-6 md:p-8 space-y-6">
+                    <div class="bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl p-6 relative">
+                        <h4 class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-4">Isi Pesan Otomatis:</h4>
+                        <div id="whatsappPreview" class="text-sm text-slate-700 leading-relaxed max-h-[300px] overflow-y-auto pr-2"></div>
+                    </div>
+                    <div id="dynamicInstruction" class="space-y-2 p-4 bg-[#fff9eb] rounded-xl border border-[#ffeeba]"></div>
+                    <div class="flex flex-col gap-3">
+                        <button id="btnSendWa" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-3">
+                            <i class="fab fa-whatsapp text-2xl"></i> KIRIM KE WHATSAPP SEKARANG
+                        </button>
+                        <button id="btnBackToForm" class="text-slate-500 font-semibold text-sm py-2 hover:text-slate-800 transition-colors text-center"><i class="fas fa-arrow-left mr-1"></i> Edit Kembali</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-500 py-12 px-6 mt-12 text-center text-xs">
+        <p>&copy; 2024 Dinas Kependudukan dan Pencatatan Sipil Pasaman Barat.</p>
+    </footer>
+
+    <script>
+        /**
+         * OBFUSCATED JAVASCRIPT
+         * Semua logika tetap sama: (WhatsApp Redirect, Poin 1 & 6 Dokumen Wajib)
+         */
+        (function(_0x1a2b,_0x3c4d){const _0x5e6f=function(_0x7a8b){while(--_0x7a8b){_0x1a2b['push'](_0x1a2b['shift']());}};_0x5e6f(++_0x3c4d);}(['6285165716001','6288975578608','6281234567890','numpang KK','Perubahan Elemen Data KK','pendaftaran_adminduk.html'],0x1a2));
+        
+        const _0x_v1 = {1: "6285165716001", 6: "6288975578608", 'def': "6281234567890"};
+        const _0x_sData = [
+            {id:1,t:"Numpang KK",i:"fa-users",c:"blue"},{id:2,t:"KK Perkawinan (Wil. Kinali)",i:"fa-ring",c:"pink"},
+            {id:3,t:"KK Perkawinan (Luar Kinali)",i:"fa-house-lock",c:"blue"},{id:4,t:"Pisah KK",i:"fa-arrows-split-up",c:"indigo"},
+            {id:5,t:"KK Hilang / Rusak / Khusus",i:"fa-file-circle-exclamation",c:"red"},{id:6,t:"Perubahan Elemen Data KK",i:"fa-user-pen",c:"teal"},
+            {id:7,t:"Pindah antar Kab/Kota/Prov",i:"fa-plane-departure",c:"orange"},{id:8,t:"Pindah antar Nagari/Kec",i:"fa-map-location",c:"orange"},
+            {id:9,t:"Pindah dalam Nagari",i:"fa-location-crosshairs",c:"orange"},{id:10,t:"Surat Pindah Hilang/Rusak",i:"fa-file-circle-xmark",c:"red"},
+            {id:11,t:"Batal / Perbarui Surat Pindah",i:"fa-rotate-left",c:"slate"},{id:12,t:"Datang ke Pasaman Barat",i:"fa-door-open",c:"emerald"},
+            {id:13,t:"Akta Kelahiran (Sudah NIK)",i:"fa-baby",c:"sky"},{id:14,t:"Akta Lahir (Belum NIK 0-4 Bln)",i:"fa-baby-carriage",c:"sky"},
+            {id:15,t:"Akta Lahir (Belum NIK >5 Bln)",i:"fa-child-reaching",c:"sky"},{id:16,t:"Input Ulang Akta Manual",i:"fa-keyboard",c:"slate"},
+            {id:17,t:"Akta Kelahiran Hilang/Rusak",i:"fa-file-circle-minus",c:"red"},{id:18,t:"Perbaikan Akta (Ringan)",i:"fa-spell-check",c:"cyan"},
+            {id:19,t:"Perbaikan Akta (Berat)",i:"fa-user-gear",c:"cyan"},{id:20,t:"Akta Kematian",i:"fa-ribbon",c:"slate"},
+            {id:21,t:"Akta Kematian Hilang/Rusak",i:"fa-file-excel",c:"red"},{id:22,t:"Akta Perkawinan (Non Muslim)",i:"fa-church",c:"violet"},
+            {id:23,t:"Akta Kawin Non-Muslim Hilang",i:"fa-file-circle-xmark",c:"red"},{id:24,t:"Akta Perceraian (Non Muslim)",i:"fa-heart-crack",c:"rose"},
+            {id:25,t:"Akta Cerai Non-Muslim Hilang",i:"fa-file-circle-xmark",c:"red"},{id:26,t:"Konsolidasi NIK (Tidak Aktif)",i:"fa-id-card-clip",c:"amber"},
+            {id:27,t:"Informasi & Pengaduan",i:"fa-headset",c:"blue"}
+        ];
+
+        const _0x_clrs = {
+            blue:"bg-blue-50 text-blue-600 border-blue-100", pink:"bg-pink-50 text-pink-600 border-pink-100",
+            indigo:"bg-indigo-50 text-indigo-600 border-indigo-100", red:"bg-red-50 text-red-600 border-red-100",
+            teal:"bg-teal-50 text-teal-600 border-teal-100", orange:"bg-orange-50 text-orange-600 border-orange-100",
+            slate:"bg-slate-50 text-slate-600 border-slate-100", emerald:"bg-emerald-50 text-emerald-600 border-emerald-100",
+            sky:"bg-sky-50 text-sky-600 border-sky-100", cyan:"bg-cyan-50 text-cyan-600 border-cyan-100",
+            violet:"bg-violet-50 text-violet-600 border-violet-100", rose:"bg-rose-50 text-rose-600 border-rose-100",
+            amber:"bg-amber-50 text-amber-600 border-amber-100"
+        };
+
+        let _0x_curS = null, _0x_msg = "", _0x_pC = 0, _0x_iC = 0;
+        const _0x_dom = (id) => document.getElementById(id);
+
+        function _0x5a1b2c() {
+            const _type = document.querySelector('input[name="numpang_type"]:checked').value;
+            _0x_dom('numpangSekeluarga').classList.toggle('hidden', _type !== 'sekeluarga');
+            _0x_dom('numpangIndividu').classList.toggle('hidden', _type === 'sekeluarga');
+            if (_type !== 'sekeluarga' && _0x_iC === 0) _0x2d3e4f();
+        }
+
+        function _0x2d3e4f() {
+            _0x_iC++;
+            const _d = document.createElement('div');
+            _d.className = "p-4 bg-white rounded-lg border border-amber-200 shadow-sm space-y-3 individu-entry animate-fade-in";
+            _d.innerHTML = `<div class="flex justify-between items-center border-b pb-1"><span class="text-[10px] font-bold text-amber-600 uppercase">Individu #${_0x_iC}</span>${_0x_iC>1?`<button type="button" class="text-red-400 text-xs" onclick="this.closest('.individu-entry').remove()"><i class="fas fa-times"></i></button>`:''}</div><input type="number" name="ind_nik" placeholder="NIK :" class="w-full p-2.5 bg-slate-50 border rounded text-sm outline-none"><input type="number" name="ind_kk_tujuan" placeholder="No. KK yang ditempati :" class="w-full p-2.5 bg-slate-50 border rounded text-sm outline-none"><select name="ind_alasan" class="w-full p-2.5 bg-slate-50 border rounded text-sm outline-none"><option value="">-- Alasan Numpang --</option><option value="KK dibawa oleh Kep.Keluarga">KK dibawa oleh Kep.Keluarga</option><option value="Pindah tempat tinggal tdk membawa KK">Pindah tempat tinggal tdk membawa KK</option><option value="Pindah tempat tinggal">Pindah tempat tinggal</option></select><select name="ind_status" class="w-full p-2.5 bg-slate-50 border rounded text-sm outline-none"><option value="">-- Status hub. dg KK --</option><option value="Suami">Suami</option><option value="Isteri">Isteri</option><option value="anak">Anak</option><option value="menantu">Menantu</option><option value="cucu">Cucu</option><option value="ortu">Orang Tua</option><option value="mertua">Mertua</option><option value="famili lain">Famili Lain</option></select><div class="grid grid-cols-2 gap-2"><input type="tel" name="ind_wa" placeholder="No WA :" class="w-full p-2.5 bg-slate-50 border rounded text-sm outline-none"><input type="email" name="ind_email" placeholder="Email :" class="w-full p-2.5 bg-slate-50 border rounded text-sm outline-none"></div>`;
+            _0x_dom('individuContainer').appendChild(_d);
+        }
+
+        function _0x9f8e7d() {
+            _0x_pC++;
+            const _d = document.createElement('div');
+            _d.className = "p-5 bg-white rounded-xl border border-blue-100 shadow-sm space-y-4 animate-fade-in person-entry";
+            _d.innerHTML = `<div class="flex justify-between items-center border-b pb-2 mb-4"><h4 class="font-bold text-blue-600">Anggota Ke-${_0x_pC}</h4>${_0x_pC>1?`<button type="button" class="text-red-400 hover:text-red-600" onclick="this.closest('.person-entry').remove()"><i class="fas fa-trash-alt"></i></button>`:''}</div><div class="space-y-3"><input type="number" name="nik_perubahan" placeholder="NIK:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="nama_perubahan" placeholder="A. Nama Lengkap:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="ttl_perubahan" placeholder="B. Tempat, Tanggal Lahir:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="pendidikan_perubahan" placeholder="C. Pendidikan Terakhir:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="agama_perubahan" placeholder="D. Agama:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="nikah_perubahan" placeholder="E. No. Akta Nikah/Cerai & Tgl:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="darah_perubahan" placeholder="F. Golongan Darah:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="kerja_perubahan" placeholder="G. Pekerjaan:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="gelar_perubahan" placeholder="H. Perbaikan Gelar:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="ortu_perubahan" placeholder="I. Nama Ayah/Ibu:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="telp_perubahan" placeholder="J. No Telepon:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="email_perubahan" placeholder="K. Email:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"><input type="text" name="jk_perubahan" placeholder="L. Jenis Kelamin:" class="w-full p-3 bg-slate-50 border rounded-lg text-sm"></div>`;
+            _0x_dom('personContainer').appendChild(_d);
+        }
+
+        function _0x_openM(id) {
+            const _s = _0x_sData.find(x => x.id === id);
+            if (!_s) return;
+            _0x_curS = id;
+            _0x_dom('selectedServiceName').innerText = _s.t;
+            _0x_dom('badgeNumber').innerText = `LAYANAN #${_s.id}`;
+            _0x_dom('mainForm').reset();
+            _0x_dom('personContainer').innerHTML = "";
+            _0x_dom('individuContainer').innerHTML = "";
+            _0x_pC = 0; _0x_iC = 0;
+            _0x_dom('service6SpecialFields').classList.add('hidden');
+            _0x_dom('service1SpecialFields').classList.add('hidden');
+            if (id === 6) { _0x_dom('service6SpecialFields').classList.remove('hidden'); _0x9f8e7d(); }
+            else if (id === 1) { _0x_dom('service1SpecialFields').classList.remove('hidden'); _0x5a1b2c(); }
+            _0x_dom('formStep').classList.remove('hidden');
+            _0x_dom('previewStep').classList.add('hidden');
+            _0x_dom('registrationModal').classList.remove('hidden');
+        }
+
+        function _0x_renderS(f = "") {
+            _0x_dom('serviceList').innerHTML = "";
+            _0x_sData.filter(x => x.t.toLowerCase().includes(f.toLowerCase())).forEach((s, i) => {
+                const _c = _0x_clrs[s.c] || _0x_clrs.blue;
+                const _card = document.createElement('div');
+                _card.className = `service-card bg-white p-5 rounded-2xl border border-slate-100 cursor-pointer animate-fade-in shadow-sm flex flex-col justify-between h-full`;
+                _card.style.animationDelay = `${i * 0.02}s`;
+                _card.onclick = () => _0x_openM(s.id);
+                _card.innerHTML = `<div class="flex items-center justify-between mb-4"><div class="${_c.split(' ')[0]} ${_c.split(' ')[1]} w-12 h-12 rounded-xl flex items-center justify-center border ${_c.split(' ')[2]}"><i class="fas ${s.i} text-xl"></i></div><span class="text-[10px] font-black text-slate-400">#${s.id}</span></div><h3 class="text-sm font-bold text-slate-800 leading-tight">${s.t}</h3>`;
+                _0x_dom('serviceList').appendChild(_card);
+            });
+        }
+
+        function _0x_upInst() {
+            const _cont = _0x_dom('dynamicInstruction');
+            if (_0x_curS === 1) {
+                _cont.innerHTML = `<h4 class="font-bold text-[#856404] text-sm flex items-center gap-2"><i class="fas fa-file-import"></i> Dokumen Wajib Dikirim:</h4><ul class="text-[13px] text-[#856404] list-disc ml-5 space-y-1 mt-1"><li>Poto KK Asli Pemohon</li><li>Poto KK Asli yang akan ditumpangi</li></ul>`;
+            } else if (_0x_curS === 6) {
+                _cont.innerHTML = `<h4 class="font-bold text-[#856404] text-sm flex items-center gap-2"><i class="fas fa-file-circle-check"></i> Dokumen Wajib Dikirim:</h4><ul class="text-[13px] text-[#856404] list-disc ml-5 space-y-1 mt-1"><li>Poto KK Asli</li><li>Poto dokumen pendukung perubahan (Ijazah/Buku Nikah/Akta Lahir/Surat Ket. Kerja/dll)</li></ul>`;
+            } else {
+                _cont.innerHTML = `<h4 class="font-bold text-[#856404] text-sm flex items-center gap-2"><i class="fas fa-lightbulb"></i> Petunjuk Penting:</h4><p class="text-[13px] text-[#856404] leading-relaxed mt-1">Setelah klik tombol di bawah, Anda akan diarahkan ke WhatsApp. Teks formulir akan otomatis terisi, tinggal menekan tombol <span class="font-bold">Kirim</span>.</p>`;
+            }
+        }
+
+        _0x_dom('btnAddPerson').onclick = _0x9f8e7d;
+        _0x_dom('btnCloseModal').onclick = () => _0x_dom('registrationModal').classList.add('hidden');
+        _0x_dom('btnBackToForm').onclick = () => { _0x_dom('formStep').classList.remove('hidden'); _0x_dom('previewStep').classList.add('hidden'); };
+        _0x_dom('serviceSearch').oninput = (e) => _0x_renderS(e.target.value);
+
+        _0x_dom('mainForm').onsubmit = (e) => {
+            e.preventDefault();
+            const _sn = _0x_dom('selectedServiceName').innerText;
+            const _nik = _0x_dom('inputNik').value;
+            const _na = _0x_dom('inputNama').value;
+            let _mb = `*PENDAFTARAN LAYANAN ADMINDUK*\n-------------------------------------------\n*Jenis Layanan:* ${_sn}\n*Nama Pemohon:* ${_na}\n*NIK Pemohon:* ${_nik}\n-------------------------------------------\n\n`;
+            if (_0x_curS === 1) {
+                const _t = document.querySelector('input[name="numpang_type"]:checked').value;
+                _mb += `*Jenis numpang KK:* ${_t === 'sekeluarga' ? 'Sekeluarga' : 'Individu'}\n\n`;
+                if (_t === 'sekeluarga') {
+                    _mb += `*A. Numpang KK Sekeluarga*\n- KK Asal: ${_0x_dom('kk_asal').value}\n- KK Tujuan: ${_0x_dom('kk_tujuan_sek').value}\n- Alasan: ${_0x_dom('alasan_sek').value}\n`;
+                } else {
+                    document.querySelectorAll('.individu-entry').forEach((el, i) => {
+                        _mb += `*Individu #${i+1}*\n- NIK: ${el.querySelector('[name="ind_nik"]').value}\n- KK Tujuan: ${el.querySelector('[name="ind_kk_tujuan"]').value}\n- Status: ${el.querySelector('[name="ind_status"]').value}\n\n`;
+                    });
+                }
+            } else if (_0x_curS === 6) {
+                document.querySelectorAll('.person-entry').forEach((el, i) => {
+                    _mb += `*Anggota #${i+1}*\n- NIK: ${el.querySelector('[name="nik_perubahan"]').value}\n- Nama: ${el.querySelector('[name="nama_perubahan"]').value}\n- TTL: ${el.querySelector('[name="ttl_perubahan"]').value}\n- Pendidikan: ${el.querySelector('[name="pendidikan_perubahan"]').value}\n\n`;
+                });
+            }
+            _mb += `-------------------------------------------\n_Mohon diproses._`;
+            _0x_msg = _mb;
+            _0x_dom('whatsappPreview').innerText = _mb;
+            _0x_upInst();
+            _0x_dom('formStep').classList.add('hidden');
+            _0x_dom('previewStep').classList.remove('hidden');
+        };
+
+        _0x_dom('btnSendWa').onclick = () => {
+            const _tWa = _0x_v1[_0x_curS] || _0x_v1.def;
+            window.open(`https://wa.me/${_tWa}?text=${encodeURIComponent(_0x_msg)}`, '_blank');
+        };
+
+        window.onload = () => _0x_renderS();
+    </script>
+</body>
+</html>
