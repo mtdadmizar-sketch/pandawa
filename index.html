@@ -227,7 +227,7 @@ let CID=null,PC=0;
 function toast(m,t='info'){const e=document.getElementById('toast'),c={info:'bg-slate-900 text-white',success:'bg-green-600 text-white',error:'bg-red-600 text-white',warning:'bg-amber-500 text-white'};e.className=`toast ${c[t]||c.info}`;e.innerHTML=m;requestAnimationFrame(()=>e.classList.add('show'));setTimeout(()=>e.classList.remove('show'),3000)}
 function vf(f){const ins=f.querySelectorAll('[required]:not(:disabled)');let v=1,fi=null;ins.forEach(i=>{if(!i.value.trim()){i.style.borderColor='#ef4444';i.style.boxShadow='0 0 0 3px rgba(239,68,68,.1)';v=0;if(!fi)fi=i;const r=()=>{i.style.borderColor='';i.style.boxShadow=''};i.addEventListener('input',function h(){r();i.removeEventListener('input',h)});i.addEventListener('change',function h(){r();i.removeEventListener('change',h)})}});if(fi)fi.focus();return v}
 
-// Helpers
+
 const fld=(l,p,n,r=1)=>`<div><label class="lbl">${l}</label><input type="text" name="${n}" placeholder="${p}" class="fi" ${r?'required':''}></div>`;
 const num=(l,p,n,r=1)=>`<div><label class="lbl">${l}</label><input type="text" inputmode="numeric" name="${n}" placeholder="${p}" class="fi" ${r?'required':''}></div>`;
 const sel=(l,n,o,r=1)=>`<div><label class="lbl">${l}</label><select name="${n}" class="fsel" ${r?'required':''}><option value="">-- Pilih --</option>${o.map(x=>`<option value="${x}">${x}</option>`).join('')}</select></div>`;
@@ -239,19 +239,19 @@ const g2=(a,b)=>`<div class="grid grid-cols-1 md:grid-cols-2 gap-4">${a}${b}</di
 const g3=(a,b,c)=>`<div class="grid grid-cols-1 md:grid-cols-2 gap-4">${a}${b}${c}</div>`;
 const sub=`<button type="submit" class="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-600/20 transition-all transform hover:scale-[1.01] flex items-center justify-center gap-2 text-sm">PROSES DATA & LIHAT SYARAT <i class="fas fa-arrow-right ml-1"></i></button>`;
 
-// Dynamic block helpers
+
 function mkP(n,fields,isFirst=true){PC++;const i=PC,d=document.createElement('div');d.className='pb bg-white border border-slate-200 rounded-2xl p-5 mb-4';d.dataset.idx=i;d.innerHTML=`<div class="flex items-center justify-between mb-4"><div class="flex items-center gap-3"><div class="pn">${i}</div><span class="text-sm font-bold text-slate-700">${n}</span></div>${!isFirst?`<button type="button" class="brp" onclick="rmP(this)" title="Hapus"><i class="fas fa-trash-can text-xs"></i></button>`:''}</div><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${fields(i)}</div>`;return d}
 function addP(cid,tmpl,nm){const c=document.getElementById(cid);if(!c)return;const b=mkP(nm,tmpl,c.querySelectorAll('.pb').length===0);c.appendChild(b);b.querySelector('input,select')?.focus();setTimeout(()=>b.scrollIntoView({behavior:'smooth',block:'center'}),50);rnP(cid,nm)}
 function rmP(btn){const c=btn.closest('.pb').parentElement;if(c.querySelectorAll('.pb').length<=1){toast('<i class="fas fa-exclamation-triangle mr-2"></i>Minimal harus ada 1','warning');return}btn.closest('.pb').classList.add('rm');setTimeout(()=>{btn.closest('.pb').remove();rnP(c.id,c.dataset.nm||'Data')},300)}
 function rnP(cid,nm){const c=document.getElementById(cid);if(!c)return;c.querySelectorAll('.pb').forEach((b,i)=>{b.querySelector('.pn').textContent=i+1});const cnt=c.querySelectorAll('.pb').length;const btn=document.getElementById('btn_'+cid);if(btn)btn.innerHTML=`<i class="fas fa-plus"></i> TAMBAHKAN ${nm.toUpperCase()} KE-${cnt+1}`}
 
-// Conditional section toggles
+
 function togNS(v,idA,idB,cards){const a=document.getElementById(idA),b=document.getElementById(idB);a.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=true);b.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=true);a.classList.remove('open');b.classList.remove('open');cards.forEach(c=>c.classList.remove('active'));if(v==='A'){a.classList.add('open');a.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=false);cards[0]?.classList.add('active')}else if(v==='B'){b.classList.add('open');b.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=false);cards[1]?.classList.add('active')}}
 function togNS2(v,idA,idB,idC,cards){[idA,idB,idC].forEach(id=>{const el=document.getElementById(id);if(el){el.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=true);el.classList.remove('open')}});cards.forEach(c=>c.classList.remove('active'));if(v==='full'){const el=document.getElementById(idA);el.classList.add('open');el.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=false);cards[0]?.classList.add('active')}else{const el=document.getElementById(idB);el.classList.add('open');el.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=false);cards[1]?.classList.add('active')}}
 
 function togChg(chk,bi,fk){const w=document.getElementById(`cf_${fk}_${bi}`),inp=w?.querySelector('input,select,textarea');if(w){w.style.display=chk.checked?'flex':'none';if(inp){inp.required=chk.checked;if(!chk.checked)inp.value=''}if(chk.checked)chk.closest('.chk-item')?.classList.add('checked');else chk.closest('.chk-item')?.classList.remove('checked')}}
 
-// ===== BUILD FORMS =====
+
 function buildForm(id){
 const f=document.getElementById('mainForm');f.innerHTML='';PC=0;
 let h='';
@@ -332,13 +332,13 @@ else if(id===26){h+=`<div class="fs">${hd('fa-id-card-clip','PERMASALAHAN NIK')}
 
 f.innerHTML=h+sub;f.onsubmit=handleSubmit;
 
-// Init dynamic blocks
+
 if(id===1){const c=document.getElementById('pc_numpang');if(c)c.appendChild(mkP('Data Individu',(i)=>fld('NIK','16 digit','ind_nik_'+i)+sel('Status Hubungan dg KK','ind_status_'+i,O.statusHub)+fld('No WhatsApp','08xxx','ind_wa_'+i)+fld('Email (opsional)','email@mail.com','ind_email_'+i,0),true))}
 if(id===4){const c=document.getElementById('pc_pisah');if(c)c.appendChild(mkP('Data yang Pisah',(i)=>fld('Nama yang Pisah KK','Nama lengkap','pisah_nama_'+i)+sel('Status Hub. dlm KK Baru','pisah_status_'+i,O.statusKKBaru),true))}
 if(id===7||id===8){const c=document.getElementById('pc_pindah');if(c)c.appendChild(mkP('Data yang Pindah',(i)=>fld('Nama','Nama lengkap','pindah_nama_'+i)+num('NIK','16 digit','pindah_nik_'+i),true))}
 }
 
-// Perubahan KK dynamic block
+
 function addUbahBlock(){
 PC++;const i=PC,d=document.createElement('div');d.className='pb bg-white border border-slate-200 rounded-2xl p-5 mb-4';d.dataset.idx=i;
 d.innerHTML=`<div class="flex items-center justify-between mb-4"><div class="flex items-center gap-3"><div class="pn">${i}</div><span class="text-sm font-bold text-slate-700">NIK Ke-${i}</span></div><button type="button" class="brp" onclick="rmP(this)" title="Hapus"><i class="fas fa-trash-can text-xs"></i></button></div>${num('NIK','16 digit','nik_'+i)}<div class="mt-4"><div class="chk-grid mb-4">${O.perubahanKK.map(p=>`<label class="chk-item" id="ci_${p.k}_${i}"><input type="checkbox" onchange="togChg(this,${i},'${p.k}')">${p.l}</label>`).join('')}</div><div id="chg_fields_${i}">${O.perubahanKK.map(p=>{let inp=p.k==='D'?sel(p.l,`chg_${p.k}_${i}`,O.agama,0):p.k==='C'?sel(p.l,`chg_${p.k}_${i}`,O.pendidikan,0):p.k==='G'?sel(p.l,`chg_${p.k}_${i}`,O.pekerjaan,0):p.k==='F'?sel(p.l,`chg_${p.k}_${i}`,O.goldar,0):p.k==='L'?`<div><label class="lbl">${p.l}</label><div class="grid grid-cols-2 gap-3"><label class="rc" style="padding:10px 14px"><input type="radio" name="chg_L_${i}" value="Laki-laki"><span class="text-sm font-semibold">Laki-laki</span></label><label class="rc" style="padding:10px 14px"><input type="radio" name="chg_L_${i}" value="Perempuan"><span class="text-sm font-semibold">Perempuan</span></label></div></div>`:fld(p.l,`Isi ${p.l} baru`,`chg_${p.k}_${i}`,0);return`<div id="cf_${p.k}_${i}" class="chg-field" style="display:none;margin-bottom:12px">${inp}</div>`}).join('')}</div></div>`;
@@ -346,7 +346,7 @@ const c=document.getElementById('pc_ubah');c.appendChild(d);d.querySelector('inp
 const cnt=c.querySelectorAll('.pb').length;const btn=document.getElementById('btn_pc_ubah');if(btn)btn.innerHTML=`<i class="fas fa-plus"></i> TAMBAHKAN NIK KE-${cnt+1}`;
 }
 
-// Conditional toggles for specific forms
+
 document.addEventListener('change',function(e){
 if(!CID)return;
 if(CID===5&&e.target.name==='Alasan'){/* radio visual handled by CSS */}
@@ -355,7 +355,7 @@ if(CID===12&&e.target.name==='jenis_datang'){const show=e.target.value==='Numpan
 if((CID===14||CID===15)&&e.target.name==='cacat'){const show=e.target.value==='Ada';const sec=document.getElementById('nsD');if(show){sec.classList.add('open');sec.querySelectorAll('select').forEach(e=>e.disabled=false)}else{sec.classList.remove('open');sec.querySelectorAll('select').forEach(e=>{e.disabled=true;e.value=''})}}
 });
 
-// ===== SUBMIT =====
+
 function handleSubmit(e){
 e.preventDefault();
 if(CID===1){if(!e.target.querySelector('[name="Jenis Numpang KK"]:checked')){toast('<i class="fas fa-exclamation-triangle mr-2"></i> Pilih jenis numpang KK','error');return}}
@@ -369,7 +369,7 @@ const formatTgl = (dateStr) => {
     return `${d}-${m}-${y}`;
 };
 
-// Custom handlers for dynamic/conditional forms
+
 if(CID===1){
 const j=e.target.querySelector('[name="Jenis Numpang KK"]:checked').value;
 const jl=j==='Sekeluarga'?'Sekeluarga':'Per Individu (Tidak Kepala Keluarga)';
@@ -413,7 +413,7 @@ else {
     fd.forEach((v, k) => {
         let valueDisplay = v || '-';
         
-        // Logika untuk mengubah format yyyy-mm-dd menjadi d-m-y
+        
         if (k === 'Tanggal Lahir' && v.includes('-')) {
             const [y, m, d] = v.split('-');
             valueDisplay = `${d}-${m}-${y}`;
