@@ -91,7 +91,7 @@
             <span class="text-blue-100">Layanan Aktif</span>
         </div>
         <h1 class="text-4xl md:text-6xl font-black mb-5 tracking-tight leading-tight">Portal Layanan<br><span class="bg-gradient-to-r from-blue-200 via-white to-blue-200 bg-clip-text text-transparent">Adminduk</span></h1>
-        <p class="text-blue-200 text-lg md:text-xl max-w-xl opacity-90 leading-relaxed">Disdukcapil Kabupaten Pasaman Barat<br><span class="text-blue-300/70 text-sm">Pendaftaran online via WhatsApp</span></p>
+        <p class="text-blue-200 text-lg md:text-xl max-w-xl opacity:90 leading-relaxed">Disdukcapil Kabupaten Pasaman Barat<br><span class="text-blue-300/70 text-sm">Pendaftaran online via WhatsApp</span></p>
         <div class="flex gap-4 mt-8 flex-wrap justify-center">
             <div class="sb"><div class="text-2xl font-black">27</div><div class="text-[10px] uppercase tracking-widest text-blue-300 mt-1">Layanan</div></div>
             <div class="sb"><div class="text-2xl font-black">24/7</div><div class="text-[10px] uppercase tracking-widest text-blue-300 mt-1">Akses</div></div>
@@ -137,7 +137,7 @@
 const O={
 goldar:['A','B','AB','O','Tidak Tahu'],agama:['Islam','Protestan','Katolik','Hindu','Buddha','Konghucu','Kepercayaan'],
 pendidikan:['Tidak/Belum Sekolah','SD/Sederajat','SMP/Sederajat','SMA/Sederajat','D1','D2','D3','D4/S1','S2','S3'],
-pekerjaan:['Belum/Tidak Bekerja','Pelajar/Mahasiswa','PNS','PPPK','TNI','Polri','Pegawai Swasta','Wiraswasta','Petani/Perkebunan','Buruh','Nelayan','Lainnya'],
+pekerjaan:['Belum/Tidak Bekerja','Pelajar/Mahasiswa','PNS','TNI','Polri','Pegawai Swasta','Wiraswasta','Petani/Perkebunan','Buruh','Nelayan','Lainnya'],
 statusHub:['Suami','Isteri','Anak','Menantu','Cucu','Ortu','Mertua','Famili Lain','Pembantu','Lainnya'],
 alasanNumpang:['KK dibawa oleh Kepala Keluarga','Pindah tempat tinggal tidak membawa KK','Pindah tempat tinggal'],
 alasanPisah:['Membentuk rumah tangga baru','Pindah tempat tinggal'],
@@ -158,15 +158,17 @@ yangMenerangkan:['Dokter','Bidan','Perawat','Polisi','Kepala Desa/Nagari','Lainn
 statusSblmNikah:['Belum Pernah Kawin','Janda','Duda'],agamaNikah:['Protestan','Katolik','Hindu','Buddha','Konghucu'],
 peradilan:['Pengadilan Negeri','Pengadilan Agama','Lainnya'],pemohonCerai:['Suami','Isteri'],
 sebabCerai:['Cerai Hidup','Cerai Mati'],disabilitas:['Daksa','Netra','Rungu/Wicara','Mental','Lainnya'],
-perubahanKK:[{k:'A',l:'Nama Lengkap'},{k:'B',l:'Tempat, Tgl, Bln, Tahun Lahir'},{k:'C',l:'Pendidikan Terakhir'},{k:'D',l:'Agama'},{k:'E',l:'No/Tgl Akta Nikah/Cerai'},{k:'F',l:'Golongan Darah'},{k:'G',l:'Pekerjaan'},{k:'H',l:'Gelar'},{k:'I',l:'Nama Ayah/Ibu'},{k:'J',l:'No Telepon'},{k:'K',l:'Email'},{k:'L',l:'Jenis Kelamin'}]
+perubahanKK:[{k:'A',l:'Nama Lengkap'},{k:'B',l:'Tempat, Tgl, Bln, Tahun Lahir'},{k:'C',l:'Pendidikan Terakhir'},{k:'D',l:'Agama'},{k:'E',l:'No/Tgl Akta Nikah/Cerai'},{k:'F',l:'Golongan Darah'},{k:'G',l:'Pekerjaan'},{k:'H',l:'Gelar'},{k:'I',l:'Nama Ayah/Ibu'},{k:'J',l:'No Telepon'},{k:'K',l:'Email'},{k:'L',l:'Jenis Kelamin'}],
+perbaikanAktaKecil:[{k:'PA1',l:'Tempat/Tanggal Lahir'},{k:'PA2',l:'Nama Ayah'},{k:'PA3',l:'Nama Ibu'}],
+perbaikanAktaBesar:[{k:'PB1',l:'Nama'},{k:'PB2',l:'Tahun Lahir'},{k:'PB3',l:'Nama Ibu'},{k:'PB4',l:'Nama Ayah'}]
 };
 
 const WA={1:'6285165716001',2:'6285165716001',3:'6285165716002',4:'6285165716001',5:'6285165716001',6:'6288975578608',7:'6281270304836',8:'6285165716003',9:'6285165716003',10:'6281270304836',11:'6281270304836',12:'6281270304836',13:'6282219240533',14:'6281270304834',15:'6285165716004',16:'6285165716008',17:'6285165716008',18:'6285165716008',19:'6285165716008',20:'6282219240533',21:'6282219240533',22:'6281270557938',23:'6281270557938',24:'6281270557938',25:'6281270557938',26:'6285198009383',27:'6285198009383'};
 
 const DOC={
 1:['Poto KK asli','Poto KK asli yang akan ditumpangi'],
-2:['Poto KK/Suket pindah asli Suami','Poto KK/Suket pindah asli Istri','Poto Buku Nikah asli Suami/Istri','Poto Buku Nikah asli Ortu & Mertua'],
-3:['Poto KK/Suket pindah asli Suami','Poto KK/Suket pindah asli Istri','Poto Buku Nikah asli Suami/Istri','Poto Buku Nikah asli Ortu & Mertua'],
+2:['Poto KK/Suket pindah asli Suami','Poto KK/Suket pindah asli Istri','Poto Buku nikah asli Suami/Istri','Poto Buku nikah asli Ortu & Mertua'],
+3:['Poto KK/Suket pindah asli Suami','Poto KK/Suket pindah asli Istri','Poto Buku nikah asli Suami/Istri','Poto Buku nikah asli Ortu & Mertua'],
 4:['Poto KK asli','Poto Akta perceraian asli (bagi yang bercerai)','Poto KTP asli (17+)','Bukti rekam KTP-el bagi Kepala Keluarga'],
 5:['Poto KK asli rusak','Screenshot WA petugas','Poto surat instansi/lembaga','Poto Suket hilang polisi'],
 6:['Poto KK asli','Poto dokumen pendukung sesuai poin yang dirubah (Akta/Ijazah/Paspor/Suket/dst)'],
@@ -176,13 +178,13 @@ const DOC={
 10:['Poto surat pindah asli yang rusak'],
 11:['Poto Surat keterangan Pindah'],
 12:['Poto Suket Pindah WNI','Poto KK Asli yang akan ditumpangi'],
-13:['Poto Suket lahir/STPJM Lahir','Poto Buku Nikah ortu/STPJM Pasutri','Poto KK & Ijazah/Rapor'],
-14:['Poto Suket lahir/STPJM Lahir','Poto Buku Nikah ortu/STPJM Pasutri','Poto KK'],
-15:['Poto Suket lahir/STPJM Lahir','Poto Buku Nikah ortu/STPJM Pasutri','Poto KK & Ijazah/Rapor'],
+13:['Poto Suket lahir/STPJM Lahir','Poto Buku nikah ortu/STPJM Pasutri','Poto KK & Ijazah/Rapor'],
+14:['Poto Suket lahir/STPJM Lahir','Poto Buku nikah ortu/STPJM Pasutri','Poto KK'],
+15:['Poto Suket lahir/STPJM Lahir','Poto Buku nikah ortu/STPJM Pasutri','Poto KK & Ijazah/Rapor'],
 16:['Poto Akta kelahiran','Poto KK'],
 17:['Poto Suket hilang polisi (manual/stempel basah)','Poto Akta asli rusak'],
-18:['Poto KK, Akta ybs & Saudara','Poto Buku Nikah ortu, Ijazah/Paspor'],
-19:['Poto SPTJM Kebenaran Data (Materai)','Poto Akta lama, KK, Buku Nikah, Ijazah'],
+18:['Poto KK, Akta ybs & Saudara','Poto Buku nikah ortu, Ijazah/Paspor'],
+19:['Poto SPTJM Kebenaran Data (Materai)','Poto Akta lama, KK, Buku nikah, Ijazah'],
 20:['Poto Suket Mati (RS/Polisi/Nagari)','Poto KK & KTP Alm'],
 21:['Poto Suket hilang polisi','Poto Akta asli rusak'],
 22:['Poto Akta Lahir Suami $ Istri (Jika ada)','Poto Suket Gereja','Kartu Keluarga dan KTP Suami Istri'],
@@ -210,8 +212,8 @@ const SV=[
 {id:15,t:'Akta Lahir (5 Bln-16 Th)',i:'fa-child-reaching',c:'bg-purple-50 text-purple-600'},
 {id:16,t:'Input Ulang Akta Manual',i:'fa-keyboard',c:'bg-fuchsia-50 text-fuchsia-600'},
 {id:17,t:'Akta Lahir Hilang/Rusak',i:'fa-file-circle-minus',c:'bg-red-50 text-red-600'},
-{id:18,t:'Perbaikan Akta (Minor)',i:'fa-spell-check',c:'bg-rose-50 text-rose-600'},
-{id:19,t:'Perbaikan Akta (Mayor)',i:'fa-user-gear',c:'bg-amber-50 text-amber-600'},
+{id:18,t:'Perbaikan Akta (Kecil)',i:'fa-spell-check',c:'bg-rose-50 text-rose-600'},
+{id:19,t:'Perbaikan Akta (Besar)',i:'fa-user-gear',c:'bg-amber-50 text-amber-600'},
 {id:20,t:'Akta Kematian',i:'fa-ribbon',c:'bg-slate-100 text-slate-600'},
 {id:21,t:'Akta Mati Hilang/Rusak',i:'fa-file-lines',c:'bg-stone-100 text-stone-600'},
 {id:22,t:'Akta Perkawinan',i:'fa-heart',c:'bg-pink-50 text-pink-600'},
@@ -227,7 +229,6 @@ let CID=null,PC=0;
 function toast(m,t='info'){const e=document.getElementById('toast'),c={info:'bg-slate-900 text-white',success:'bg-green-600 text-white',error:'bg-red-600 text-white',warning:'bg-amber-500 text-white'};e.className=`toast ${c[t]||c.info}`;e.innerHTML=m;requestAnimationFrame(()=>e.classList.add('show'));setTimeout(()=>e.classList.remove('show'),3000)}
 function vf(f){const ins=f.querySelectorAll('[required]:not(:disabled)');let v=1,fi=null;ins.forEach(i=>{if(!i.value.trim()){i.style.borderColor='#ef4444';i.style.boxShadow='0 0 0 3px rgba(239,68,68,.1)';v=0;if(!fi)fi=i;const r=()=>{i.style.borderColor='';i.style.boxShadow=''};i.addEventListener('input',function h(){r();i.removeEventListener('input',h)});i.addEventListener('change',function h(){r();i.removeEventListener('change',h)})}});if(fi)fi.focus();return v}
 
-
 const fld=(l,p,n,r=1)=>`<div><label class="lbl">${l}</label><input type="text" name="${n}" placeholder="${p}" class="fi" ${r?'required':''}></div>`;
 const num=(l,p,n,r=1)=>`<div><label class="lbl">${l}</label><input type="text" inputmode="numeric" name="${n}" placeholder="${p}" class="fi" ${r?'required':''}></div>`;
 const sel=(l,n,o,r=1)=>`<div><label class="lbl">${l}</label><select name="${n}" class="fsel" ${r?'required':''}><option value="">-- Pilih --</option>${o.map(x=>`<option value="${x}">${x}</option>`).join('')}</select></div>`;
@@ -239,22 +240,19 @@ const g2=(a,b)=>`<div class="grid grid-cols-1 md:grid-cols-2 gap-4">${a}${b}</di
 const g3=(a,b,c)=>`<div class="grid grid-cols-1 md:grid-cols-2 gap-4">${a}${b}${c}</div>`;
 const sub=`<button type="submit" class="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-600/20 transition-all transform hover:scale-[1.01] flex items-center justify-center gap-2 text-sm">PROSES DATA & LIHAT SYARAT <i class="fas fa-arrow-right ml-1"></i></button>`;
 
-
 function mkP(n,fields,isFirst=true){PC++;const i=PC,d=document.createElement('div');d.className='pb bg-white border border-slate-200 rounded-2xl p-5 mb-4';d.dataset.idx=i;d.innerHTML=`<div class="flex items-center justify-between mb-4"><div class="flex items-center gap-3"><div class="pn">${i}</div><span class="text-sm font-bold text-slate-700">${n}</span></div>${!isFirst?`<button type="button" class="brp" onclick="rmP(this)" title="Hapus"><i class="fas fa-trash-can text-xs"></i></button>`:''}</div><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${fields(i)}</div>`;return d}
 function addP(cid,tmpl,nm){const c=document.getElementById(cid);if(!c)return;const b=mkP(nm,tmpl,c.querySelectorAll('.pb').length===0);c.appendChild(b);b.querySelector('input,select')?.focus();setTimeout(()=>b.scrollIntoView({behavior:'smooth',block:'center'}),50);rnP(cid,nm)}
 function rmP(btn){const c=btn.closest('.pb').parentElement;if(c.querySelectorAll('.pb').length<=1){toast('<i class="fas fa-exclamation-triangle mr-2"></i>Minimal harus ada 1','warning');return}btn.closest('.pb').classList.add('rm');setTimeout(()=>{btn.closest('.pb').remove();rnP(c.id,c.dataset.nm||'Data')},300)}
 function rnP(cid,nm){const c=document.getElementById(cid);if(!c)return;c.querySelectorAll('.pb').forEach((b,i)=>{b.querySelector('.pn').textContent=i+1});const cnt=c.querySelectorAll('.pb').length;const btn=document.getElementById('btn_'+cid);if(btn)btn.innerHTML=`<i class="fas fa-plus"></i> TAMBAHKAN ${nm.toUpperCase()} KE-${cnt+1}`}
 
-
 function togNS(v,idA,idB,cards){const a=document.getElementById(idA),b=document.getElementById(idB);a.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=true);b.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=true);a.classList.remove('open');b.classList.remove('open');cards.forEach(c=>c.classList.remove('active'));if(v==='A'){a.classList.add('open');a.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=false);cards[0]?.classList.add('active')}else if(v==='B'){b.classList.add('open');b.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=false);cards[1]?.classList.add('active')}}
-function togNS2(v,idA,idB,idC,cards){[idA,idB,idC].forEach(id=>{const el=document.getElementById(id);if(el){el.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=true);el.classList.remove('open')}});cards.forEach(c=>c.classList.remove('active'));if(v==='full'){const el=document.getElementById(idA);el.classList.add('open');el.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=false);cards[0]?.classList.add('active')}else{const el=document.getElementById(idB);el.classList.add('open');el.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=false);cards[1]?.classList.add('active')}}
 
 function togChg(chk,bi,fk){const w=document.getElementById(`cf_${fk}_${bi}`),inp=w?.querySelector('input,select,textarea');if(w){w.style.display=chk.checked?'flex':'none';if(inp){inp.required=chk.checked;if(!chk.checked)inp.value=''}if(chk.checked)chk.closest('.chk-item')?.classList.add('checked');else chk.closest('.chk-item')?.classList.remove('checked')}}
 
-
 function buildForm(id){
 const f=document.getElementById('mainForm');f.innerHTML='';PC=0;
-let h='';
+
+let h=`<div class="fs">${hd('fa-user-shield','DATA PEMOHON')}${g2(num('NIK Pemohon','16 digit','NIK Pemohon'),fld('Nama Lengkap','Sesuai KTP','Nama Lengkap Pemohon'))}</div>`;
 
 if(id===1){h+=`<div class="fs">${hd('fa-people-roof','JENIS NUMPANG KK')}<div class="grid grid-cols-1 md:grid-cols-2 gap-4"><label class="rc nrc"><input type="radio" name="Jenis Numpang KK" value="Sekeluarga" onchange="togNS('A','nsA','nsB',document.querySelectorAll('.nrc'))" required><div><div class="font-bold text-slate-800 text-sm">Sekeluarga</div><div class="text-[11px] text-slate-400 mt-0.5">Seluruh anggota keluarga numpang</div></div></label><label class="rc nrc"><input type="radio" name="Jenis Numpang KK" value="Individu" onchange="togNS('B','nsA','nsB',document.querySelectorAll('.nrc'))"><div><div class="font-bold text-slate-800 text-sm">Per Individu</div><div class="text-[11px] text-slate-400 mt-0.5">Bukan kepala keluarga</div></div></label></div></div>`;
 h+=`<div id="nsA" class="ns"><div class="fs" style="margin-bottom:0">${hd('fa-house-chimney-user','A. NUMPANG KK SEKELUARGA')}${g2(num('No. KK Asal','16 digit','No KK Asal'),num('No. KK yang Ditempati','16 digit','No KK Ditempati'))}${sel('Alasan Numpang KK','Alasan',O.alasanNumpang)}</div></div>`;
@@ -274,11 +272,10 @@ h+=`<div id="pc_ubah" data-nm="NIK"></div><button type="button" id="btn_pc_ubah"
 
 else if(id===7||id===8){const klas=id===7?O.klasifikasi7:O.klasifikasi8;
 h+=`<div class="fs">${hd('fa-truck-ramp-box','JENIS KEPINDAHAN')}${sel('Jenis Kepindahan','jenis_pindah',O.jenisPindah)}</div>`;
-h+=`<div id="nsA" class="ns"><div class="fs" style="margin-bottom:0">${hd('fa-file-lines','DATA KESELURUARGA')}${num('No KK','16 digit','pindah_kk')}</div></div>`;
-h+=`<div id="nsB" class="ns"><div class="fs" style="margin-bottom:0">${hd('fa-users','DATA SEBAGIAN YANG PINDAH')}<div id="pc_pindah" data-nm="Orang"></div><button type="button" id="btn_pc_pindah" class="bap" onclick="addP('pc_pindah',(i)=>fld('Nama','Nama lengkap','pindah_nama_'+i)+num('NIK','16 digit','pindah_nik_'+i),'Orang')"><i class="fas fa-plus"></i> TAMBAHKAN ORANG KE-2</button></div></div>`;
-h+=`<div class="fs">${hd('fa-map-pin','DATA KEPINDAHAN')}${g3(sel('Klasifikasi Pindah','klasifikasi',klas),sel('Status KK bagi yg Tdk Pindah','status_kk_tdk',O.statusKKTdk),sel('Alasan Pindah','alasan_pindah',O.alasanPindah2))}${tx('Alamat Tujuan Lengkap','Alamat, RT&RW/Dusun/Jorong, Kelurahan/Desa/Nagari, Kecamatan, Kab/Kota, Prov','alamat_tujuan')}${g3(sel('KK bagi yg Pindah','kk_pindah',O.kkBagiPindah),fld('No WhatsApp','08xxx','WA'),fld('Email (opsional)','email@mail.com','Email',0))}</div>`}
+h+=`<div class="fs">${hd('fa-users','DATA YANG PINDAH')}${num('No KK','16 digit','pindah_kk')}<div class="mt-5 mb-2"><div class="flex items-center gap-2 lbl" style="margin:0"><i class="fas fa-users text-slate-400"></i> DATA ANGGOTA YANG PINDAH</div></div><div id="pc_pindah" data-nm="Orang"></div><button type="button" id="btn_pc_pindah" class="bap" onclick="addP('pc_pindah',(i)=>fld('Nama','Nama lengkap','pindah_nama_'+i)+num('NIK','16 digit','pindah_nik_'+i),'Orang')"><i class="fas fa-plus"></i> TAMBAHKAN ORANG KE-2</button></div>`;
+h+=`<div class="fs">${hd('fa-map-pin','DATA KEPINDAHAN')}${g3(sel('Klasifikasi Pindah','klasifikasi',klas),sel('Status KK bagi yg Tdk Pindah','status_kk_tdk',O.statusKKTdk),sel('Alasan Pindah','alasan_pindah',O.alasanPindah2))}${g2(fld('Alamat','Nama Jalan/Dusun','Alamat Tujuan'),fld('RT&RW','Contoh: 001/002','RT/RW Tujuan'))}${g2(fld('Kelurahan/Desa/Nagari','Nama Kelurahan','Kelurahan Tujuan'),fld('Kecamatan','Nama Kecamatan','Kecamatan Tujuan'))}${g2(fld('Kabupaten/Kota','Nama Kab/Kota','KabKota Tujuan'),fld('Provinsi','Nama Provinsi','Provinsi Tujuan'))}${g3(sel('KK bagi yg Pindah','kk_pindah',O.kkBagiPindah),fld('No WhatsApp','08xxx','WA'),fld('Email (opsional)','email@mail.com','Email',0))}</div>`}
 
-else if(id===9){h+=`<div class="fs">${hd('fa-location-dot','PINDAH DALAM NAGARI')}${num('No KK','16 digit','No KK')}${fld('Alamat Baru','Alamat lengkap','Alamat Baru')}${fld('Nama Jorong Baru','Nama jorong','Jorong Baru')}</div>`}
+else if(id===9){h+=`<div class="fs">${hd('fa-location-dot','PINDAH DALAM NAGARI')}${num('No KK','16 digit','No KK')}<div class="mt-5 mb-2"><div class="flex items-center gap-2 lbl" style="margin:0"><i class="fas fa-users text-slate-400"></i> DATA YANG PINDAH</div></div><div id="pc_pindah" data-nm="Orang"></div><button type="button" id="btn_pc_pindah" class="bap" onclick="addP('pc_pindah',(i)=>fld('Nama','Nama lengkap','pindah_nama_'+i)+num('NIK','16 digit','pindah_nik_'+i),'Orang')"><i class="fas fa-plus"></i> TAMBAHKAN ORANG KE-2</button>${fld('Alamat Baru','Alamat lengkap','Alamat Baru')}${fld('Nama Jorong Baru','Nama jorong','Jorong Baru')}</div>`}
 
 else if(id===10){
     h+=`<div class="fs">
@@ -309,10 +306,10 @@ else if(id===16){h+=`<div class="fs">${hd('fa-keyboard','INPUT ULANG AKTA MANUAL
 else if(id===17){h+=`<div class="fs">${hd('fa-file-circle-minus','AKTA LAHIR HILANG/RUSAK')}${fld('Nama yang Punya Akta','Nama lengkap','Nama')}${fld('Tempat/Tgl Lahir','Kota, 01-01-2000','TTL')}${fld('Nama Ibu','Nama lengkap ibu','Ibu')}</div>`}
 
 else if(id===18){h+=`<div class="fs">${hd('fa-spell-check','PERBAIKAN AKTA (MINOR)')}${g2(fld('Nama','Nama lengkap','Nama'),num('NIK','16 digit','NIK'))}${fld('Anak Ke','Angka','Anak Ke')}</div>`;
-h+=`<div class="fs">${hd('fa-pen','FIELD PERBAIKAN')}${inf('Isi <strong>field yang ingin diperbaiki</strong> saja.')}${fld('Tempat/Tanggal Lahir','Perbaikan TTL','TTL',0)}${g2(fld('Nama Ayah','Perbaikan nama ayah','Nama Ayah',0),fld('Nama Ibu','Perbaikan nama ibu','Nama Ibu',0))}</div>`}
+h+=`<div class="fs">${hd('fa-pen','FIELD PERBAIKAN')}${inf('Pilih <strong>field yang ingin diperbaiki</strong> saja.')}<div class="chk-grid mb-4">${O.perbaikanAktaKecil.map(p=>`<label class="chk-item" id="ci_${p.k}_1"><input type="checkbox" onchange="togChg(this,1,'${p.k}')">${p.l}</label>`).join('')}</div><div id="chg_fields_1">${O.perbaikanAktaKecil.map(p=>`<div id="cf_${p.k}_1" class="chg-field" style="display:none;margin-bottom:12px">${fld(p.l,`Isi ${p.l} baru`,`chg_${p.k}_1`,0)}</div>`).join('')}</div></div>`}
 
 else if(id===19){h+=`<div class="fs">${hd('fa-user-gear','PERBAIKAN AKTA (MAYOR)')}${g2(fld('Nama','Nama lengkap','Nama'),num('NIK','16 digit','NIK'))}${g3(sel('Tempat Dilahirkan','tempat_lahir',O.tempatLahir),sel('Jenis Kelahiran','jenis_lahir',O.jenisLahir),sel('Penolong Kelahiran','penolong',O.penolong))}${g3(fld('Jam Lahir','00:00','Jam'),fld('Anak Ke','Angka','Anak Ke'),fld('Berat (Kg)','3.2','Berat'))}${g3(fld('Panjang (Cm)','50','Panjang'),fld('No WA','08xxx','WA'),fld('Email (opsional)','email@mail.com','Email',0))}${num('NIK Saksi','16 digit','NIK Saksi')}</div>`;
-h+=`<div class="fs">${hd('fa-pen','FIELD PERBAIKAN')}${inf('Isi <strong>field yang ingin diperbaiki</strong> saja.')}${fld('Nama','Perbaikan nama','Nama Baru',0)}${fld('Tahun Lahir','Perbaikan tahun','Thn Lahir',0)}${g2(fld('Nama Ibu','Perbaikan nama ibu','Nama Ibu Baru',0),fld('Nama Ayah','Perbaikan nama ayah','Nama Ayah Baru',0))}</div>`}
+h+=`<div class="fs">${hd('fa-pen','FIELD PERBAIKAN')}${inf('Pilih <strong>field yang ingin diperbaiki</strong> saja.')}<div class="chk-grid mb-4">${O.perbaikanAktaBesar.map(p=>`<label class="chk-item" id="ci_${p.k}_1"><input type="checkbox" onchange="togChg(this,1,'${p.k}')">${p.l}</label>`).join('')}</div><div id="chg_fields_1">${O.perbaikanAktaBesar.map(p=>`<div id="cf_${p.k}_1" class="chg-field" style="display:none;margin-bottom:12px">${fld(p.l,`Isi ${p.l} baru`,`chg_${p.k}_1`,0)}</div>`).join('')}</div></div>`}
 
 else if(id===20){h+=`<div class="fs">${hd('fa-ribbon','DATA KEMATIAN')}${g2(fld('Nama Almarhum/ah','Nama lengkap','Nama'),num('NIK Almarhum/ah','16 digit','NIK'))}${g3(fld('Umur','Contoh: 65 tahun','Umur'),fld('Provinsi/Kab/Kota Dilahirkan','Tempat lahir','TTL'),fld('Anak Ke','Angka','Anak Ke'))}${g3(fld('Tanggal Kematian','01-01-2025','Tgl Mati'),fld('Nama Kab/Kota Kematian','Kab/Kota','Kab Mati'),fld('Waktu Kematian','14:00','Waktu Mati'))}${g3(sel('Sebab Kematian','sebab',O.sebabMati),sel('Yang Menerangkan','menerangkan',O.yangMenerangkan))}${g3(fld('No WA Pelapor','08xxx','WA'),fld('Email Pelapor (opsional)','email@mail.com','Email',0))}${g3(num('NIK Pelapor','16 digit','NIK Pelapor'),num('NIK Saksi 1','16 digit','NIK Saksi 1'),num('NIK Saksi 2','16 digit','NIK Saksi 2'))}</div>`}
 
@@ -332,12 +329,10 @@ else if(id===26){h+=`<div class="fs">${hd('fa-id-card-clip','PERMASALAHAN NIK')}
 
 f.innerHTML=h+sub;f.onsubmit=handleSubmit;
 
-
 if(id===1){const c=document.getElementById('pc_numpang');if(c)c.appendChild(mkP('Data Individu',(i)=>fld('NIK','16 digit','ind_nik_'+i)+sel('Status Hubungan dg KK','ind_status_'+i,O.statusHub)+fld('No WhatsApp','08xxx','ind_wa_'+i)+fld('Email (opsional)','email@mail.com','ind_email_'+i,0),true))}
 if(id===4){const c=document.getElementById('pc_pisah');if(c)c.appendChild(mkP('Data yang Pisah',(i)=>fld('Nama yang Pisah KK','Nama lengkap','pisah_nama_'+i)+sel('Status Hub. dlm KK Baru','pisah_status_'+i,O.statusKKBaru),true))}
-if(id===7||id===8){const c=document.getElementById('pc_pindah');if(c)c.appendChild(mkP('Data yang Pindah',(i)=>fld('Nama','Nama lengkap','pindah_nama_'+i)+num('NIK','16 digit','pindah_nik_'+i),true))}
+if(id===7||id===8||id===9){const c=document.getElementById('pc_pindah');if(c)c.appendChild(mkP('Data yang Pindah',(i)=>fld('Nama','Nama lengkap','pindah_nama_'+i)+num('NIK','16 digit','pindah_nik_'+i),true))}
 }
-
 
 function addUbahBlock(){
 PC++;const i=PC,d=document.createElement('div');d.className='pb bg-white border border-slate-200 rounded-2xl p-5 mb-4';d.dataset.idx=i;
@@ -346,15 +341,12 @@ const c=document.getElementById('pc_ubah');c.appendChild(d);d.querySelector('inp
 const cnt=c.querySelectorAll('.pb').length;const btn=document.getElementById('btn_pc_ubah');if(btn)btn.innerHTML=`<i class="fas fa-plus"></i> TAMBAHKAN NIK KE-${cnt+1}`;
 }
 
-
 document.addEventListener('change',function(e){
 if(!CID)return;
 if(CID===5&&e.target.name==='Alasan'){/* radio visual handled by CSS */}
-if((CID===7||CID===8)&&e.target.name==='jenis_pindah'){const v=e.target.value;const isFull=v.includes('Seluruh')||v==='Kepala Keluarga';togNS2(isFull?'full':'part','nsA','nsB','nsC',document.querySelectorAll(`[name="jenis_pindah"]`).length?[e.target.closest('.rc')]:[])}
 if(CID===12&&e.target.name==='jenis_datang'){const show=e.target.value==='Numpang KK';const sec=document.getElementById('nsC');if(show){sec.classList.add('open');sec.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=false)}else{sec.classList.remove('open');sec.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=true);sec.querySelectorAll('input,select,textarea').forEach(e=>e.value='')}}
 if((CID===14||CID===15)&&e.target.name==='cacat'){const show=e.target.value==='Ada';const sec=document.getElementById('nsD');if(show){sec.classList.add('open');sec.querySelectorAll('select').forEach(e=>e.disabled=false)}else{sec.classList.remove('open');sec.querySelectorAll('select').forEach(e=>{e.disabled=true;e.value=''})}}
 });
-
 
 function handleSubmit(e){
 e.preventDefault();
@@ -363,56 +355,82 @@ if(!vf(e.target)){toast('<i class="fas fa-exclamation-triangle mr-2"></i> Lengka
 
 let mt='',ph='';
 const sn=SV.find(x=>x.id===CID).t.toUpperCase();
-const formatTgl = (dateStr) => {
-    if(!dateStr || !dateStr.includes('-')) return dateStr;
-    const [y, m, d] = dateStr.split('-');
-    return `${d}-${m}-${y}`;
-};
 
+const bp1=e.target.querySelector('[name="NIK Pemohon"]')?.value||'-';
+const bp2=e.target.querySelector('[name="Nama Lengkap Pemohon"]')?.value||'-';
 
 if(CID===1){
 const j=e.target.querySelector('[name="Jenis Numpang KK"]:checked').value;
 const jl=j==='Sekeluarga'?'Sekeluarga':'Per Individu (Tidak Kepala Keluarga)';
-mt=`*PENDAFTARAN NUMPANG KK*\n━━━━━━━━━━━━━━━━━━━━\n*Jenis* : ${jl}\n━━━━━━━━━━━━━━━━━━━━\n`;
-ph=`<span class="wb">PENDAFTARAN NUMPANG KK</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">Jenis</span> : ${jl}\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n`;
+mt=`*PENDAFTARAN NUMPANG KK*\n━━━━━━━━━━━━━━━━━━━━\n*NIK Pemohon* : ${bp1}\n*Nama Pemohon* : ${bp2}\n*Jenis* : ${jl}\n━━━━━━━━━━━━━━━━━━━━\n`;
+ph=`<span class="wb">PENDAFTARAN NUMPANG KK</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">NIK Pemohon</span> : ${bp1}\n<span class="wb">Nama Pemohon</span> : ${bp2}\n<span class="wb">Jenis</span> : ${jl}\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n`;
 if(j==='Sekeluarga'){['No KK Asal','No KK Ditempati','Alasan'].forEach(k=>{const v=e.target.querySelector(`[name="${k}"]`)?.value||'-';mt+=`*${k}* : ${v}\n`;ph+=`<span class="wb">${k}</span> : ${v}\n`})}
 else{const kk=e.target.querySelector('[name="ind_kk"]')?.value||'-';const al=e.target.querySelector('[name="ind_alasan"]')?.value||'-';mt+=`*No KK Ditempati* : ${kk}\n*Alasan* : ${al}\n━━━━━━━━━━━━━━━━━━━━\n`;ph+=`<span class="wb">No KK Ditempati</span> : ${kk}\n<span class="wb">Alasan</span> : ${al}\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n`;
 document.querySelectorAll('#pc_numpang .pb').forEach((b,i)=>{const n=i+1;const nik=b.querySelector('[name^="ind_nik_"]')?.value||'-';const st=b.querySelector('[name^="ind_status_"]')?.value||'-';const wa=b.querySelector('[name^="ind_wa_"]')?.value||'-';const em=b.querySelector('[name^="ind_email_"]')?.value||'-';mt+=`\n*ORANG KE-${n}*\n*NIK* : ${nik}\n*Status Hubungan* : ${st}\n*WA* : ${wa}\n*Email* : ${em}\n`;ph+=`\n<span class="wl">ORANG KE-${n}</span>\n<span class="wb">NIK</span> : ${nik}\n<span class="wb">Status Hubungan</span> : ${st}\n<span class="wb">WA</span> : ${wa}\n<span class="wb">Email</span> : ${em}\n`})}
 }
 
 else if(CID===4){
-mt=`*PENDAFTARAN PISAH KK*\n━━━━━━━━━━━━━━━━━━━━\n`;ph=`<span class="wb">PENDAFTARAN PISAH KK</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n`;
+mt=`*PENDAFTARAN PISAH KK*\n━━━━━━━━━━━━━━━━━━━━\n*NIK Pemohon* : ${bp1}\n*Nama Pemohon* : ${bp2}\n`;ph=`<span class="wb">PENDAFTARAN PISAH KK</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">NIK Pemohon</span> : ${bp1}\n<span class="wb">Nama Pemohon</span> : ${bp2}\n`;
 ['No KK','Alasan'].forEach(k=>{const v=e.target.querySelector(`[name="${k}"]`)?.value||'-';mt+=`*${k}* : ${v}\n`;ph+=`<span class="wb">${k}</span> : ${v}\n`});
 mt+=`━━━━━━━━━━━━━━━━━━━━\n`;ph+=`<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n`;
 document.querySelectorAll('#pc_pisah .pb').forEach((b,i)=>{const n=i+1;const nm=b.querySelector('[name^="pisah_nama_"]')?.value||'-';const st=b.querySelector('[name^="pisah_status_"]')?.value||'-';mt+=`\n*ORANG KE-${n}*\n*Nama* : ${nm}\n*Status* : ${st}\n`;ph+=`\n<span class="wl">ORANG KE-${n}</span>\n<span class="wb">Nama</span> : ${nm}\n<span class="wb">Status</span> : ${st}\n`});
 const wa=e.target.querySelector('[name="WA"]')?.value||'-';const em=e.target.querySelector('[name="Email"]')?.value||'-';mt+=`\n*WA* : ${wa}\n*Email* : ${em}\n`;ph+=`\n<span class="wb">WA</span> : ${wa}\n<span class="wb">Email</span> : ${em}\n`;
-
 }
+
 else if(CID===6){
-mt=`*PENDAFTARAN PERUBAHAN KK*\n━━━━━━━━━━━━━━━━━━━━\n`;ph=`<span class="wb">PENDAFTARAN PERUBAHAN KK</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n`;
+mt=`*PENDAFTARAN PERUBAHAN KK*\n━━━━━━━━━━━━━━━━━━━━\n*NIK Pemohon* : ${bp1}\n*Nama Pemohon* : ${bp2}\n`;ph=`<span class="wb">PENDAFTARAN PERUBAHAN KK</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">NIK Pemohon</span> : ${bp1}\n<span class="wb">Nama Pemohon</span> : ${bp2}\n`;
 const blocks=[...document.querySelectorAll('#pc_ubah .pb')];blocks.unshift({dataset:{idx:'1'},querySelector:s=>e.target.querySelector(`[name="${s}"]`)});
 blocks.forEach((b,i)=>{const bi=b.dataset.idx;const n=i+1;const nik=e.target.querySelector(`[name="nik_${bi}"]`)?.value||'-';mt+=`\n*NIK KE-${n}* : ${nik}\n`;ph+=`\n<span class="wl">NIK KE-${n}</span> : ${nik}\n`;
 O.perubahanKK.forEach(p=>{const chk=document.getElementById(`ci_${p.k}_${bi}`)?.querySelector('input');if(chk?.checked){const v=e.target.querySelector(`[name="chg_${p.k}_${bi}"]`)||b.querySelector?.(`[name="chg_${p.k}_${bi}"]`);const val=v?.value||'-';mt+=`  ${p.k}. ${p.l} : ${val}\n`;ph+=`  <span class="wb">${p.k}. ${p.l}</span> : ${val}\n`}})});
 }
+
 else if(CID===7||CID===8){
-mt=`*PENDAFTARAN PINDAH*\n━━━━━━━━━━━━━━━━━━━━\n`;ph=`<span class="wb">PENDAFTARAN PINDAH</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n`;
+mt=`*PENDAFTARAN PINDAH*\n━━━━━━━━━━━━━━━━━━━━\n*NIK Pemohon* : ${bp1}\n*Nama Pemohon* : ${bp2}\n`;ph=`<span class="wb">PENDAFTARAN PINDAH</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">NIK Pemohon</span> : ${bp1}\n<span class="wb">Nama Pemohon</span> : ${bp2}\n`;
 const jp=e.target.querySelector('[name="jenis_pindah"]')?.value||'-';mt+=`*Jenis Kepindahan* : ${jp}\n`;ph+=`<span class="wb">Jenis Kepindahan</span> : ${jp}\n`;
-if(jp.includes('Seluruh')||jp==='Kepala Keluarga'){const kk=e.target.querySelector('[name="pindah_kk"]')?.value||'-';mt+=`*No KK* : ${kk}\n`;ph+=`<span class="wb">No KK</span> : ${kk}\n`}
-else{mt+=`*Data Pindah:*\n`;ph+=`<span class="wb">Data Pindah:</span>\n`;document.querySelectorAll('#pc_pindah .pb').forEach((b,i)=>{const nm=b.querySelector('[name^="pindah_nama_"]')?.value||'-';const nk=b.querySelector('[name^="pindah_nik_"]')?.value||'-';mt+=`  ${i+1}. ${nm} - ${nk}\n`;ph+=`  ${i+1}. ${nm} - ${nk}\n`})}
-['klasifikasi','status_kk_tdk','alasan_pindah','alamat_tujuan','kk_pindah','WA','Email'].forEach(k=>{const el=e.target.querySelector(`[name="${k}"]`);if(el){const v=el.value||'-';const lb=el.closest('div')?.querySelector('.lbl')?.textContent||k;mt+=`*${lb.trim()}* : ${v}\n`;ph+=`<span class="wb">${lb.trim()}</span> : ${v}\n`}});
+const kk=e.target.querySelector('[name="pindah_kk"]')?.value||'-';mt+=`*No KK* : ${kk}\n`;ph+=`<span class="wb">No KK</span> : ${kk}\n`;
+mt+=`*Data Pindah:*\n`;ph+=`<span class="wb">Data Pindah:</span>\n`; 
+document.querySelectorAll('#pc_pindah .pb').forEach((b,i)=>{const nm=b.querySelector('[name^="pindah_nama_"]')?.value||'-';const nk=b.querySelector('[name^="pindah_nik_"]')?.value||'-';mt+=`  ${i+1}. ${nm} - ${nk}\n`;ph+=`  ${i+1}. ${nm} - ${nk}\n`});
+['klasifikasi','status_kk_tdk','alasan_pindah','kk_pindah'].forEach(k=>{const el=e.target.querySelector(`[name="${k}"]`);if(el){const v=el.value||'-';const lb=el.closest('div')?.querySelector('.lbl')?.textContent||k;mt+=`*${lb.trim()}* : ${v}\n`;ph+=`<span class="wb">${lb.trim()}</span> : ${v}\n`}});
+['Alamat Tujuan','RT/RW Tujuan','Kelurahan Tujuan','Kecamatan Tujuan','KabKota Tujuan','Provinsi Tujuan'].forEach(k=>{const el=e.target.querySelector(`[name="${k}"]`);if(el){const v=el.value||'-';const lb=k.replace(' Tujuan','');mt+=`*${lb}* : ${v}\n`;ph+=`<span class="wb">${lb}</span> : ${v}\n`}});
+['WA','Email'].forEach(k=>{const el=e.target.querySelector(`[name="${k}"]`);if(el&&el.value){mt+=`*${k}* : ${el.value}\n`;ph+=`<span class="wb">${k}</span> : ${el.value}\n`}});
 }
+
+else if(CID===9){
+mt=`*PENDAFTARAN PINDAH DALAM NAGARI*\n━━━━━━━━━━━━━━━━━━━━\n*NIK Pemohon* : ${bp1}\n*Nama Pemohon* : ${bp2}\n`;ph=`<span class="wb">PENDAFTARAN PINDAH DALAM NAGARI</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">NIK Pemohon</span> : ${bp1}\n<span class="wb">Nama Pemohon</span> : ${bp2}\n`;
+const kk=e.target.querySelector('[name="No KK"]')?.value||'-';mt+=`*No KK* : ${kk}\n`;ph+=`<span class="wb">No KK</span> : ${kk}\n`;
+mt+=`*Data Pindah:*\n`;ph+=`<span class="wb">Data Pindah:</span>\n`;
+document.querySelectorAll('#pc_pindah .pb').forEach((b,i)=>{const nm=b.querySelector('[name^="pindah_nama_"]')?.value||'-';const nk=b.querySelector('[name^="pindah_nik_"]')?.value||'-';mt+=`  ${i+1}. ${nm} - ${nk}\n`;ph+=`  ${i+1}. ${nm} - ${nk}\n`});
+['Alamat Baru','Jorong Baru'].forEach(k=>{const v=e.target.querySelector(`[name="${k}"]`)?.value||'-';mt+=`*${k}* : ${v}\n`;ph+=`<span class="wb">${k}</span> : ${v}\n`});
+}
+
 else if(CID===12){
-mt=`*PENDAFTARAN DATANG KE PASBAR*\n━━━━━━━━━━━━━━━━━━━━\n`;ph=`<span class="wb">PENDAFTARAN DATANG KE PASBAR</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n`;
-new FormData(e.target).forEach((v,k)=>{if(v)mt+=`*${k}* : ${v}\n`;if(v)ph+=`<span class="wb">${k}</span> : ${v}\n`});
+mt=`*PENDAFTARAN DATANG KE PASBAR*\n━━━━━━━━━━━━━━━━━━━━\n*NIK Pemohon* : ${bp1}\n*Nama Pemohon* : ${bp2}\n`;ph=`<span class="wb">PENDAFTARAN DATANG KE PASBAR</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">NIK Pemohon</span> : ${bp1}\n<span class="wb">Nama Pemohon</span> : ${bp2}\n`;
+new FormData(e.target).forEach((v,k)=>{if(v&&k!=='NIK Pemohon'&&k!=='Nama Lengkap Pemohon')mt+=`*${k}* : ${v}\n`;if(v&&k!=='NIK Pemohon'&&k!=='Nama Lengkap Pemohon')ph+=`<span class="wb">${k}</span> : ${v}\n`});
 }
+
+else if(CID===18){
+mt=`*PENDAFTARAN PERBAIKAN AKTA (MINOR)*\n━━━━━━━━━━━━━━━━━━━━\n*NIK Pemohon* : ${bp1}\n*Nama Pemohon* : ${bp2}\n`;ph=`<span class="wb">PENDAFTARAN PERBAIKAN AKTA (MINOR)</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">NIK Pemohon</span> : ${bp1}\n<span class="wb">Nama Pemohon</span> : ${bp2}\n`;
+['Nama','NIK','Anak Ke'].forEach(k=>{const v=e.target.querySelector(`[name="${k}"]`)?.value||'-';mt+=`*${k}* : ${v}\n`;ph+=`<span class="wb">${k}</span> : ${v}\n`});
+mt+=`━━━━━━━━━━━━━━━━━━━━\n*FIELD PERBAIKAN*\n`;ph+=`<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">FIELD PERBAIKAN</span>\n`;
+O.perbaikanAktaKecil.forEach(p=>{const chk=document.getElementById(`ci_${p.k}_1`)?.querySelector('input');if(chk?.checked){const v=e.target.querySelector(`[name="chg_${p.k}_1"]`);const val=v?.value||'-';mt+=`*${p.l}* : ${val}\n`;ph+=`<span class="wb">${p.l}</span> : ${val}\n`}});
+}
+
+else if(CID===19){
+mt=`*PENDAFTARAN PERBAIKAN AKTA (MAYOR)*\n━━━━━━━━━━━━━━━━━━━━\n*NIK Pemohon* : ${bp1}\n*Nama Pemohon* : ${bp2}\n`;ph=`<span class="wb">PENDAFTARAN PERBAIKAN AKTA (MAYOR)</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">NIK Pemohon</span> : ${bp1}\n<span class="wb">Nama Pemohon</span> : ${bp2}\n`;
+['Nama','NIK'].forEach(k=>{const v=e.target.querySelector(`[name="${k}"]`)?.value||'-';mt+=`*${k}* : ${v}\n`;ph+=`<span class="wb">${k}</span> : ${v}\n`});
+['tempat_lahir','jenis_lahir','penolong','Jam','Anak Ke','Berat','Panjang','NIK Saksi'].forEach(k=>{const el=e.target.querySelector(`[name="${k}"]`);if(el&&el.value){const v=el.value;const lb=el.closest('div')?.querySelector('.lbl')?.textContent||k;mt+=`*${lb.trim()}* : ${v}\n`;ph+=`<span class="wb">${lb.trim()}</span> : ${v}\n`}});
+mt+=`━━━━━━━━━━━━━━━━━━━━\n*FIELD PERBAIKAN*\n`;ph+=`<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">FIELD PERBAIKAN</span>\n`;
+O.perbaikanAktaBesar.forEach(p=>{const chk=document.getElementById(`ci_${p.k}_1`)?.querySelector('input');if(chk?.checked){const v=e.target.querySelector(`[name="chg_${p.k}_1"]`);const val=v?.value||'-';mt+=`*${p.l}* : ${val}\n`;ph+=`<span class="wb">${p.l}</span> : ${val}\n`}});
+}
+
 else {
     const fd = new FormData(e.target);
-    mt = `*PENDAFTARAN ${sn}*\n━━━━━━━━━━━━━━━━━━━━\n`;
-    ph = `<span class="wb">PENDAFTARAN ${sn}</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n`;
+    mt = `*PENDAFTARAN ${sn}*\n━━━━━━━━━━━━━━━━━━━━\n*NIK Pemohon* : ${bp1}\n*Nama Pemohon* : ${bp2}\n`;
+    ph = `<span class="wb">PENDAFTARAN ${sn}</span>\n<span class="ws">━━━━━━━━━━━━━━━━━━━━</span>\n<span class="wb">NIK Pemohon</span> : ${bp1}\n<span class="wb">Nama Pemohon</span> : ${bp2}\n`;
     
     fd.forEach((v, k) => {
+        if(k==='NIK Pemohon'||k==='Nama Lengkap Pemohon') return; 
         let valueDisplay = v || '-';
-        
         
         if (k === 'Tanggal Lahir' && v.includes('-')) {
             const [y, m, d] = v.split('-');
@@ -433,6 +451,7 @@ document.getElementById('formStep').classList.add('hidden');
 document.getElementById('previewStep').classList.remove('hidden');
 toast('<i class="fas fa-check-circle mr-2"></i> Data berhasil diproses', 'success');
 }
+
 function showDocs(){const inst=document.getElementById('dynamicInstruction');const list=DOC[CID]||[];inst.innerHTML=`<h4 class="font-bold text-xs text-blue-900 mb-4 flex items-center gap-2"><span class="w-6 h-6 bg-blue-200 rounded-md flex items-center justify-center text-blue-700 text-[10px]"><i class="fas fa-camera"></i></span>DOKUMEN YANG HARUS DIFOTO & KIRIM:</h4><ul class="text-[13px] space-y-2.5 text-blue-800">${list.map(l=>`<li class="flex items-start gap-2.5"><i class="fas fa-circle-check mt-0.5 text-blue-500 flex-shrink-0"></i><span>${l}</span></li>`).join('')}</ul><p class="text-[11px] text-blue-500 mt-4 border-t border-blue-100 pt-3"><i class="fas fa-lightbulb mr-1"></i> Foto dokumen jelas, tidak terpotong, warna asli.</p>`}
 
 function renderServices(filter=''){const list=document.getElementById('serviceList');list.innerHTML='';const f=SV.filter(x=>x.t.toLowerCase().includes(filter.toLowerCase()));document.getElementById('searchCount').textContent=f.length;if(!f.length){list.innerHTML='<div class="col-span-full text-center py-16"><i class="fas fa-search text-slate-300 text-5xl mb-4"></i><p class="text-slate-400 font-semibold">Tidak ada layanan cocok</p></div>';return}
